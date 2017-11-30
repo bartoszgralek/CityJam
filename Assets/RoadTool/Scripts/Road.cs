@@ -19,6 +19,7 @@ public class Road : MonoBehaviour
 	public float groundOffset = .1f;
 	public float[] theta;
 	public int terrainLayer = 8;
+    public float lenght = 0;
 
 	// uv options 
 	public bool swapUV = false;
@@ -153,6 +154,11 @@ public class Road : MonoBehaviour
 		Unwrapping.GenerateSecondaryUVSet(gameObject.GetComponent<MeshFilter>().sharedMesh);
 #endif
 	}
+
+    public void updateLenght()
+    {
+        lenght = Vector3.Distance(points[0], points[1]);
+    }
 
 	public Vector2[] CalculateUV(Vector3[] vertices)
 	{
