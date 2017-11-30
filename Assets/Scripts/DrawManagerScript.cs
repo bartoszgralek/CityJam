@@ -39,9 +39,9 @@ public class DrawManagerScript : MonoBehaviour {
         {
             for (int j = 0; j < matrix.GetLength(1); j++)
             {
-                print(matrix[i, j] + "\t");
+                Debug.Log(matrix[i, j] + " ");
             }
-            print("\n");
+            Debug.Log("\n");
         }
     }
     // Update is called once per frame
@@ -80,6 +80,7 @@ public class DrawManagerScript : MonoBehaviour {
                 }
                 else if (hit.collider.gameObject.tag == "vertex")
                 {
+                    
                     state = 1;
                     counter++;
                     if(counter == 1)
@@ -97,15 +98,14 @@ public class DrawManagerScript : MonoBehaviour {
                             GameObject instance = (Instantiate(line) as GameObject).GetComponent<LineScript>().setPoints(start.transform.position, end.transform.position);
                             int id1 = start.GetComponent<VertexScript>().getId();
                             int id2 = end.GetComponent<VertexScript>().getId();
-                            print("graph size: " + graph.GetLength(0) + " " + graph.GetLength(1));
                             graph[id1, id2] = Vector3.Distance(start.transform.position * multiplier, end.transform.position * multiplier);
+                            graph[id2, id1] = graph[id1, id2];
 
-                            Print2DArray(graph);
+
                             m.color = Color.black;
                             state = 0;
                             counter = 0;
 
-                  
                         }else
                         {
                             counter = 0;
@@ -120,6 +120,7 @@ public class DrawManagerScript : MonoBehaviour {
                 }
 
             }
+            Print2DArray(graph);
         }
     }
 

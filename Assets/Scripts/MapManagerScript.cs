@@ -18,15 +18,20 @@ public class MapManagerScript : MonoBehaviour {
             print("Hurey!");
         }
     }
+
+    public static void Print2DArray<T>(T[,] matrix)
+    {
+        for (int i = 0; i < matrix.GetLength(0); i++)
+        {
+            for (int j = 0; j < matrix.GetLength(1); j++)
+            {
+                Debug.Log(matrix[i, j] + " ");
+            }
+            Debug.Log("\n");
+        }
+    }
     // Use this for initialization
     void Start () {
-        print("Positions: \n\n\n");
-        foreach(Vector3 v in verticesPositions)
-        {
-            print(v);
-        }
-
-        print("graph size: " + graph.GetLength(0) + " " + graph.GetLength(1));
         for (int i = 0; i < graph.GetLength(0); i++)
         {
             for (int j = i; j < graph.GetLength(1); j++)
