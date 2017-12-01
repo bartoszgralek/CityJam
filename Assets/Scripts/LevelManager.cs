@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public static class LevelManager {
+public static class LevelManager
+{
 
     private static float[,] graph;
     private static List<Vector3> verticesPositions;

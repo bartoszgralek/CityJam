@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using System;
 
 public class MapManagerScript : MonoBehaviour {
 
@@ -32,26 +33,28 @@ public class MapManagerScript : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-        for (int i = 0; i < graph.GetLength(0); i++)
+        if (graph != null)
         {
-            for (int j = i; j < graph.GetLength(1); j++)
+            for (int i = 0; i < graph.GetLength(0); i++)
             {
-                print("for " + i + ":" + j + " " + graph[i, j]);
-                if(graph[i,j]>0)
+                for (int j = i; j < graph.GetLength(1); j++)
                 {
-                    Road r = Instantiate(prefab).GetComponent<Road>();
-                    r.points.Clear();
-                    Vector3 start = verticesPositions[i] * 10;
-                    start.z = start.y;
-                    start.y = 0;
+                    if (graph[i, j] > 0)
+                    {
+                        Road r = Instantiate(prefab).GetComponent<Road>();
+                        r.points.Clear();
+                        Vector3 start = verticesPositions[i] * 10;
+                        start.z = start.y;
+                        start.y = 0;
 
-                    Vector3 end = verticesPositions[j] * 10;
-                    end.z = end.y;
-                    end.y = 0;
+                        Vector3 end = verticesPositions[j] * 10;
+                        end.z = end.y;
+                        end.y = 0;
 
-                    r.points.Add(start);
-                    r.points.Add(end);
-                    r.Refresh();
+                        r.points.Add(start);
+                        r.points.Add(end);
+                        r.Refresh();
+                    }
                 }
             }
         }
