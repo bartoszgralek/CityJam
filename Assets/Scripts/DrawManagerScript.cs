@@ -102,6 +102,7 @@ public class DrawManagerScript : MonoBehaviour {
                             graph[id1, id2] = Vector3.Distance(start.transform.position * multiplier, end.transform.position * multiplier);
                             graph[id2, id1] = graph[id1, id2];
 
+                        
 
                             m.color = Color.black;
                             state = 0;

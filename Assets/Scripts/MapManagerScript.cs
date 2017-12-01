@@ -7,6 +7,7 @@ using System;
 public class MapManagerScript : MonoBehaviour {
 
     public GameObject prefab;
+    
     private List<Vector3> verticesPositions;
     private float[,] graph;
     private int multiplier = 10;
@@ -18,6 +19,7 @@ public class MapManagerScript : MonoBehaviour {
         if(graph != null && verticesPositions != null)
         {
             print("Hurey!");
+            
         }
     }
 
@@ -45,12 +47,16 @@ public class MapManagerScript : MonoBehaviour {
                         Road r = Instantiate(prefab).GetComponent<Road>();
                         r.points.Clear();
 
+                        
+
                         Vector3 start = verticesPositions[i];
                         Vector3 end = verticesPositions[j];
 
                         r.points.Add(start);
                         r.points.Add(end);
+                        
                         r.Refresh();
+                        //r.gameObject.AddComponent<BoxCollider>();
                     }
                 }
             }

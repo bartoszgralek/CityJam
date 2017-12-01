@@ -4,39 +4,64 @@ using UnityEngine;
 
 public class CarScript : MonoBehaviour {
 
-    public float speed;
+    public float speed = 10;
 
+    private TrafficManagerScript trafficManager;
     private List<Vector3> path;
+    private Vector3[] tmp;
     private int current = 0;
+    private Vector3 target = new Vector3();
 
-    public GameObject SetPath(List<Vector3> path)
+    public GameObject SetUp(List<Vector3> path, TrafficManagerScript trafficManager)
     {
-        this.path = path;
+        
+        tmp = new Vector3[path.Count];
+        this.trafficManager = trafficManager;
+        path.CopyTo(tmp);
+        for (int i = 0; i < tmp.Length; i++)
+            Debug.Log("PATH for i=" + i + ":" + tmp[i]);
+        
         return this.gameObject;
     }
 
-	// Use this for initialization
-	void Start () {
-        transform.position = path[0] + new Vector3(0, 2, 0);
+    private void Awake()
+    {
+        
+    }
+
+    // Use this for initialization
+    void Start () {
+        
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (transform.position.Equals(path[path.Count - 1]))
+
+    // Update is called once per frame
+    void Update()
+    {
+       // check if we have somewere to walk
+        if (current < tmp.Length)
         {
+            target = tmp[current];
+            walk();
+        }else if(current == tmp.Length)
+        {
+            trafficManager.carFinished();
             Destroy(this.gameObject);
         }
-        else
+        
+    }
+
+    void walk()
+    {
+        // rotate towards the target
+        transform.forward = Vector3.RotateTowards(transform.forward, target - transform.position, speed * Time.deltaTime, 0.0f);
+
+        // move towards the target
+        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+
+        if (transform.position == target)
         {
-            if (transform.position != path[current])
-            {
-                Vector3 pos = Vector3.MoveTowards(transform.position, path[current], speed * Time.deltaTime);
-                GetComponent<Rigidbody>().MovePosition(pos);
-            }
-            else
-            {
-                current++;
-            }
+            current++;
         }
-	}
+    }
+
 }

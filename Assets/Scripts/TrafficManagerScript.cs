@@ -6,6 +6,7 @@ using System;
 public class TrafficManagerScript : MonoBehaviour {
 
     public GameObject car;
+    public GameObject Vertex;
     private Graph g;
     private float[,] graph;
     private List<Vector3> verticesPositions;
@@ -32,47 +33,53 @@ public class TrafficManagerScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        carFinished();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetKeyDown("space"))
+
+    public void carFinished()
+    {
+        int startId = UnityEngine.Random.Range(0, verticesPositions.Count-1);
+        int endId = UnityEngine.Random.Range(0, verticesPositions.Count-1);
+        while (startId.Equals(endId))
         {
-
-            int startId = UnityEngine.Random.Range(0, verticesPositions.Count);
-            int endId = UnityEngine.Random.Range(0, verticesPositions.Count);
-            while (startId.Equals(endId))
-            {
-                endId = UnityEngine.Random.Range(0, verticesPositions.Count);
-            }
-
-            List<int> path = g.shortest_path(startId, endId);
-
-            if (path == null)
-            {
-                Debug.Log("Path is null?");
-            }else
-            {
-                Debug.Log("Points: " + startId + " -> " + endId);
-                Debug.Log("Path: ");
-                path.Add(startId);
-                path.Reverse();
-                for (int i =0;i<path.Count;i++)
-                {
-                    Debug.Log(path[i]);
-                }
-            }
-
-            List<Vector3> pathForCar = new List<Vector3>();
-            for(int i=0;i<path.Count;i++)
-            {
-                pathForCar.Add(verticesPositions[path[i]]);
-                Debug.Log("Vector3 for car: " + pathForCar[i]);
-            }
-
-            GameObject instance = (Instantiate(car) as GameObject).GetComponent<CarScript>().SetPath(pathForCar);
-
+            endId = UnityEngine.Random.Range(0, verticesPositions.Count-1);
         }
+
+        List<int> path = g.shortest_path(startId, endId);
+
+        if (path == null)
+        {
+            Debug.Log("Path is null?");
+        }
+        else
+        {
+            Debug.Log("Points: " + startId + " -> " + endId);
+            Debug.Log("Path: ");
+            path.Add(startId);
+            path.Reverse();
+            for (int i = 0; i < path.Count; i++)
+            {
+                Debug.Log(path[i]);
+            }
+        }
+
+        List<Vector3> pathForCar = new List<Vector3>();
+        for (int i = 0; i < path.Count; i++)
+        {
+            pathForCar.Add(verticesPositions[path[i]]);
+        }
+
+        for (int j = 0; j < pathForCar.Count; j++)
+        {
+            Instantiate(Vertex, pathForCar[j], Quaternion.identity);
+        }
+
+        GameObject instance = (Instantiate(car, pathForCar[0], Quaternion.identity) as GameObject).GetComponent<CarScript>().SetUp(pathForCar,this);
+
+    }
+    
+    // Update is called once per frame
+    void Update() {
+
     }
 }

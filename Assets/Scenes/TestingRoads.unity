@@ -325,7 +325,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b27885abc629c4982ad512814367a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  car: {fileID: 1524685217855954, guid: a115cd1316f29f242b77c547cdaca076, type: 2}
+  car: {fileID: 1522368921830696, guid: 9425c76b84af2f148afed98dcc97bc2d, type: 2}
+  Vertex: {fileID: 1513030583355394, guid: 2152ad1b5ced2454baa4e2e74a6c1618, type: 2}
 --- !u!4 &1948310770
 Transform:
   m_ObjectHideFlags: 0
