@@ -71,8 +71,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4508694904166764}
   - component: {fileID: 95906743203328802}
-  - component: {fileID: 114432077862062878}
   - component: {fileID: 65895392269123528}
+  - component: {fileID: 114654988674343624}
   m_Layer: 0
   m_Name: jeep
   m_TagString: Untagged
@@ -503,7 +503,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114432077862062878
+--- !u!114 &114654988674343624
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -514,4 +514,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde4fed605091574091994ec4ecea862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
