@@ -18,15 +18,15 @@ public class TrafficManagerScript : MonoBehaviour {
         Dictionary<int, float> dir = new Dictionary<int, float>();
         for (int i=0;i< graph.GetLength(0); i++)
         {
-            for(int j=i;j<graph.GetLength(1); j++)
+            for(int j=0;j<graph.GetLength(1); j++)
             {
                 if (graph[i,j] > 0)
                 {
                     dir.Add(j, graph[i, j]);
                 }
-                g.add_vertex(i, dir);
-                dir = new Dictionary<int, float>();
             }
+            g.add_vertex(i, dir);
+            dir = new Dictionary<int, float>();
         }
     }
 
