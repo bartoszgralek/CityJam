@@ -17,6 +17,7 @@ public class DrawManagerScript : MonoBehaviour {
     private float[,] graph;
     private List<Vector3> verticesPositions = new List<Vector3>();
     private int vertexCount = 0;
+
     // Use this for initialization
     void Start () {
         
@@ -120,7 +121,6 @@ public class DrawManagerScript : MonoBehaviour {
                 }
 
             }
-            Print2DArray(graph);
         }
     }
 

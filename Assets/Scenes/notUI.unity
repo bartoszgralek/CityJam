@@ -434,6 +434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertex: {fileID: 1096118756399450, guid: 0fb2384eede19fe47bed098419020331, type: 2}
   line: {fileID: 1204468385072776, guid: 22145645a6ae1f74b82743a56463b33f, type: 2}
+  multiplier: 10
 --- !u!4 &1529359885
 Transform:
   m_ObjectHideFlags: 0
