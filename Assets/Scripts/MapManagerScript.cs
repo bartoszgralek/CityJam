@@ -9,6 +9,7 @@ public class MapManagerScript : MonoBehaviour {
     public GameObject prefab;
     private List<Vector3> verticesPositions;
     private float[,] graph;
+    private int multiplier = 10;
 
     private void Awake()
     {
@@ -43,13 +44,9 @@ public class MapManagerScript : MonoBehaviour {
                     {
                         Road r = Instantiate(prefab).GetComponent<Road>();
                         r.points.Clear();
-                        Vector3 start = verticesPositions[i] * 10;
-                        start.z = start.y;
-                        start.y = 0;
 
-                        Vector3 end = verticesPositions[j] * 10;
-                        end.z = end.y;
-                        end.y = 0;
+                        Vector3 start = verticesPositions[i];
+                        Vector3 end = verticesPositions[j];
 
                         r.points.Add(start);
                         r.points.Add(end);

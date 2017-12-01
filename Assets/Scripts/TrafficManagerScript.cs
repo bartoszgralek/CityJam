@@ -39,23 +39,40 @@ public class TrafficManagerScript : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown("space"))
         {
-            Vector3 startPosition = verticesPositions[UnityEngine.Random.Range(0, verticesPositions.Count - 1)];
-            Vector3 endPosition = verticesPositions[UnityEngine.Random.Range(0, verticesPositions.Count - 1)];
-            while (startPosition.Equals(endPosition))
+
+            int startId = UnityEngine.Random.Range(0, verticesPositions.Count);
+            int endId = UnityEngine.Random.Range(0, verticesPositions.Count);
+            while (startId.Equals(endId))
             {
-                endPosition = verticesPositions[UnityEngine.Random.Range(0, verticesPositions.Count - 1)];
+                endId = UnityEngine.Random.Range(0, verticesPositions.Count);
             }
 
-            
-            if(g.shortest_path(0, 2) == null)
+            List<int> path = g.shortest_path(startId, endId);
+
+            if (path == null)
             {
                 Debug.Log("Path is null?");
-            }
-            else
+            }else
             {
+                Debug.Log("Points: " + startId + " -> " + endId);
                 Debug.Log("Path: ");
-                g.shortest_path(0, 2).ForEach(x => Debug.Log(x));
+                path.Add(startId);
+                path.Reverse();
+                for (int i =0;i<path.Count;i++)
+                {
+                    Debug.Log(path[i]);
+                }
             }
+
+            List<Vector3> pathForCar = new List<Vector3>();
+            for(int i=0;i<path.Count;i++)
+            {
+                pathForCar.Add(verticesPositions[path[i]]);
+                Debug.Log("Vector3 for car: " + pathForCar[i]);
+            }
+
+            GameObject instance = (Instantiate(car) as GameObject).GetComponent<CarScript>().SetPath(pathForCar);
+
         }
     }
 }

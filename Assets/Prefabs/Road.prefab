@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114760000725266524}
   - component: {fileID: 23104177415516774}
   - component: {fileID: 33403974087112164}
+  - component: {fileID: 64355328721824216}
   m_Layer: 0
   m_Name: Road
   m_TagString: Untagged
@@ -83,6 +84,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1036390864982248}
   m_Mesh: {fileID: 0}
+--- !u!64 &64355328721824216
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1036390864982248}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 0}
 --- !u!114 &114760000725266524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -105,6 +120,7 @@ MonoBehaviour:
   theta:
   - 1.2490457
   terrainLayer: 8
+  lenght: 0
   swapUV: 0
   flipU: 1
   flipV: 1

@@ -9,12 +9,7 @@ public class Graph
 
     public void add_vertex(int name, Dictionary<int, float> edges)
     {
-        Debug.Log("adding:" + name);
         vertices.Add(name, edges);
-        foreach(KeyValuePair<int, float> kvp in edges)
-        {
-            Debug.Log("Pair: " + kvp.Key + " " + kvp.Value);
-        }
     }
 
     public List<int> shortest_path(int start, int finish)
@@ -73,7 +68,6 @@ public class Graph
                 }
             }
         }
-
         return path;
     }
 }
