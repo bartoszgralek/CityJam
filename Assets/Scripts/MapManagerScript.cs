@@ -90,7 +90,6 @@ public class MapManagerScript : MonoBehaviour {
                             vectIn = new Vector3(x1, 0, y1);
                         }
 
-                        Debug.Log("instantiating");
                         Instantiate(ball, vectIn, Quaternion.identity);
                         Instantiate(ball, vectOut, Quaternion.identity);
                         
@@ -116,9 +115,11 @@ public class MapManagerScript : MonoBehaviour {
 
                         Vector3 start = new Vector3();
                         start = crossings[i].getMiddlePointForRoad(j);
+                        Debug.Log(start);
 
                         Vector3 end = new Vector3();
                         start = crossings[j].getMiddlePointForRoad(i);
+                        Debug.Log(end);
 
                         r.points.Add(start);
                         r.points.Add(end);

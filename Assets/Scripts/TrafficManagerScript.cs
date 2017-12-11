@@ -58,10 +58,6 @@ public class TrafficManagerScript : MonoBehaviour {
             //Debug.Log("Path: ");
             path.Add(startId);
             path.Reverse();
-            for (int i = 0; i < path.Count; i++)
-            {
-                Debug.Log(path[i]);
-            }
         }
 
         List<Vector3> pathForCar = new List<Vector3>();
