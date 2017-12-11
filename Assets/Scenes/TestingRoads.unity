@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1036390864982248, guid: 325158ff48f1454489d9364552709560, type: 2}
+  ball: {fileID: 1711647642789648, guid: d80adbcb33e179f46b46d11d6e299705, type: 2}
 --- !u!4 &782908491
 Transform:
   m_ObjectHideFlags: 0

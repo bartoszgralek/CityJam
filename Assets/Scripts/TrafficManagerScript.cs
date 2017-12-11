@@ -13,6 +13,7 @@ public class TrafficManagerScript : MonoBehaviour {
 
     private void Awake()
     {
+        //fill graph with vertices to execute Dijstra Algorithm
         g = new Graph();
         graph = LevelManager.getGraph();
         verticesPositions = LevelManager.getVerticesPositions();
@@ -53,8 +54,8 @@ public class TrafficManagerScript : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Points: " + startId + " -> " + endId);
-            Debug.Log("Path: ");
+            //Debug.Log("Points: " + startId + " -> " + endId);
+            //Debug.Log("Path: ");
             path.Add(startId);
             path.Reverse();
             for (int i = 0; i < path.Count; i++)
