@@ -80,15 +80,15 @@ public class MapManagerScript : MonoBehaviour {
                         float y2 = a2 * x2 + b2;
 
                         float diff = y - from.y;
-                        if(diff>0)
+                        /*if(diff>0)
                         {
                             vectIn = new Vector3(x2, 0, y2);
                             vectOut = new Vector3(x1, 0, y1);
                         }else
-                        {
+                        {*/
                             vectOut = new Vector3(x2, 0, y2);
                             vectIn = new Vector3(x1, 0, y1);
-                        }
+                        //}
 
                         Instantiate(ball, vectIn, Quaternion.identity);
                         Instantiate(ball, vectOut, Quaternion.identity);

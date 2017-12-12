@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CarScript : MonoBehaviour {
 
-    public float speed = 10;
+    public float speed = 20;
 
     private TrafficManagerScript trafficManager;
     private List<Vector3> path;
@@ -44,7 +44,7 @@ public class CarScript : MonoBehaviour {
             walk();
         }else if(current == tmp.Length)
         {
-            trafficManager.carFinished();
+			trafficManager.carFinished();
             Destroy(this.gameObject);
         }
         

@@ -74,6 +74,11 @@ public class TrafficManagerScript : MonoBehaviour {
 			}
 			pathForCar.RemoveAt (pathForCar.Count - 1);
         }
+		if (pathForCar.Count >= 5) {
+			for (int h = 0; h < 5; h++) {
+				pathForCar.RemoveAt (pathForCar.Count - 1);
+			}
+		}
 
         for (int j = 0; j < pathForCar.Count; j++)
         {
