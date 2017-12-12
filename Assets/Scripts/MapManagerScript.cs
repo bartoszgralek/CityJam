@@ -127,7 +127,7 @@ public class MapManagerScript : MonoBehaviour {
                         //Debug.Log(start);
 
                         Vector3 end = new Vector3();
-                        start = crossings[j].getMiddlePointForRoad(i);
+                        end = crossings[j].getMiddlePointForRoad(i);
                         //Debug.Log(end);
 
 						Debug.Log ("///" + start + "///" + end);
