@@ -24,10 +24,10 @@ public static class DijkstraAlgorithm {
 
     private static void Print(float[] distance, int verticesCount)
     {
-        Debug.Log("Vertex    Distance from source");
+        /*Debug.Log("Vertex    Distance from source");
 
         for (int i = 0; i < verticesCount; ++i)
-            Debug.Log(i + "\t" + distance[i]);
+            Debug.Log(i + "\t" + distance[i]);*/
     }
 
     public static List<KeyValuePair<int,float>> Dijkstra(float[,] graph, int source, int verticesCount)
@@ -54,8 +54,8 @@ public static class DijkstraAlgorithm {
                     distance[v] = distance[u] + graph[u, v];
         }
 
-        for (int i = 0; i < verticesCount; ++i)
-            Debug.Log(shortestPathTreeSet[i]);
+        /*for (int i = 0; i < verticesCount; ++i)
+            Debug.Log(shortestPathTreeSet[i]);*/
 
         return output;
     }
