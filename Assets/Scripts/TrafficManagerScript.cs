@@ -34,11 +34,9 @@ public class TrafficManagerScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		carFinished();
-		carFinished();
-		carFinished();
-		carFinished();
-		carFinished();
+		for (int i = 0; i < 10; i++) {
+			carFinished();
+		}
 	}
 
     public void carFinished()
