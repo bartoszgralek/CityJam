@@ -100,8 +100,8 @@ public class MapManagerScript : MonoBehaviour {
                             vectIn = new Vector3(x1, 0, y1);
                         //}*/
 
-                        Instantiate(ball, vectIn, Quaternion.identity);
-                        Instantiate(ball, vectOut, Quaternion.identity);
+                        //Instantiate(ball, vectIn, Quaternion.identity);
+                        //Instantiate(ball, vectOut, Quaternion.identity);
                         crossing.addRoad(new VertexVariation(j, vectIn, vectOut));
 
                        
