@@ -7,7 +7,7 @@ public class CarScript : MonoBehaviour {
     public float speed = 5;
 
     private TrafficManagerScript trafficManager;
-    private List<Vector3> path = new List<Vector3>();
+    private List<Vector3> path;
     public Vector3[] tmp;
     private int current = 0;
     private bool keepGoing = true;
@@ -52,7 +52,7 @@ public class CarScript : MonoBehaviour {
         {
             theDistance = hit.distance;
             Debug.Log("collider name: " + hit.collider.gameObject.name + " dist:" + theDistance);
-            if(hit.collider.gameObject.name.Equals("jeep"))
+            if(hit.collider.gameObject.name.Equals("jeep") && theDistance<2f)
             {
                 keepGoing = false;
             }
