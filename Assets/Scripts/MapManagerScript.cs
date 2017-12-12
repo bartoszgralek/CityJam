@@ -56,8 +56,8 @@ public class MapManagerScript : MonoBehaviour {
                         //first point c(x,y)
                         float a1 = (to.z - from.z) / (to.x - from.x);
                         float b1 = from.z - a1 * from.x;
-                        float d1 = 1f;
-                        float d2 = 0.5f;
+                        float d1 = 2f;
+                        float d2 = 1f;
                         float x;
                         if((to.x - from.x)>0)
                         {
@@ -113,9 +113,9 @@ public class MapManagerScript : MonoBehaviour {
 				crossings.Add(crossing);
             }
 
-            for(int i=0;i<graph.GetLength(0);i++)
+            for(int i=0; i<graph.GetLength(0); i++)
             {
-                for(int j=i;j<graph.GetLength(1); j++)
+                for(int j=0; j<i; j++)
                 {
                     if(graph[i,j] > 0)
                     {
