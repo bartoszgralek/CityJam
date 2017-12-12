@@ -27,14 +27,14 @@ public class MapManagerScript : MonoBehaviour {
 
     public static void Print2DArray<T>(T[,] matrix)
     {
-        for (int i = 0; i < matrix.GetLength(0); i++)
+        /*for (int i = 0; i < matrix.GetLength(0); i++)
         {
             for (int j = 0; j < matrix.GetLength(1); j++)
             {
                 Debug.Log(matrix[i, j] + " ");
             }
             Debug.Log("\n");
-        }
+        }*/
     }
     // Use this for initialization
     void Start () {
@@ -56,8 +56,8 @@ public class MapManagerScript : MonoBehaviour {
                         //first point c(x,y)
                         float a1 = (to.z - from.z) / (to.x - from.x);
                         float b1 = from.z - a1 * from.x;
-                        float d1 = 4f;
-                        float d2 = 1f;
+                        float d1 = 1f;
+                        float d2 = 0.5f;
                         float x;
                         if((to.x - from.x)>0)
                         {
@@ -79,16 +79,26 @@ public class MapManagerScript : MonoBehaviour {
                         float y1 = a2 * x1 + b2;
                         float y2 = a2 * x2 + b2;
 
-                        float diff = y - from.y;
-                        /*if(diff>0)
+
+						if (from.z < a2 * from.x + b2) {
+							vectOut = new Vector3 (x1, 0, y1);
+							vectIn = new Vector3(x2, 0, y2);
+						} else {
+							vectOut = new Vector3(x2, 0, y2);
+							vectIn = new Vector3(x1, 0, y1);
+						}
+
+
+                        /*float diff = y - from.y;
+                        if(diff>0)
                         {
                             vectIn = new Vector3(x2, 0, y2);
                             vectOut = new Vector3(x1, 0, y1);
                         }else
-                        {*/
+                        {
                             vectOut = new Vector3(x2, 0, y2);
                             vectIn = new Vector3(x1, 0, y1);
-                        //}
+                        //}*/
 
                         Instantiate(ball, vectIn, Quaternion.identity);
                         Instantiate(ball, vectOut, Quaternion.identity);
@@ -114,11 +124,11 @@ public class MapManagerScript : MonoBehaviour {
 
                         Vector3 start = new Vector3();
                         start = crossings[i].getMiddlePointForRoad(j);
-                        Debug.Log(start);
+                        //Debug.Log(start);
 
                         Vector3 end = new Vector3();
                         start = crossings[j].getMiddlePointForRoad(i);
-                        Debug.Log(end);
+                        //Debug.Log(end);
 
                         r.points.Add(start);
                         r.points.Add(end);

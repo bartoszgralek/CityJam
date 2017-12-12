@@ -34,7 +34,11 @@ public class TrafficManagerScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        carFinished();
+		carFinished();
+		carFinished();
+		carFinished();
+		carFinished();
+		carFinished();
 	}
 
     public void carFinished()
@@ -76,19 +80,22 @@ public class TrafficManagerScript : MonoBehaviour {
 			}
 			pathForCar.RemoveAt (pathForCar.Count - 1);
         }
-		if (pathForCar.Count >= 5) {
+		if (pathForCar.Count > 5) {
 			for (int h = 0; h < 5; h++) {
 				pathForCar.RemoveAt (pathForCar.Count - 1);
 			}
+			/*for (int j = 0; j < pathForCar.Count; j++)
+			{
+				Instantiate(Vertex, pathForCar[j], Quaternion.identity);
+			}*/
+			//Debug.Log (pathForCar.Count);
+			GameObject instance = (Instantiate(car, pathForCar[0], Quaternion.identity) as GameObject).GetComponent<CarScript>().SetUp(pathForCar,this);
+
+		} else {
+			carFinished ();
 		}
 
-        for (int j = 0; j < pathForCar.Count; j++)
-        {
-            Instantiate(Vertex, pathForCar[j], Quaternion.identity);
-        }
-
-        GameObject instance = (Instantiate(car, pathForCar[0], Quaternion.identity) as GameObject).GetComponent<CarScript>().SetUp(pathForCar,this);
-
+        
     }
     
     // Update is called once per frame

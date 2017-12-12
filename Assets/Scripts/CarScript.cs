@@ -18,8 +18,8 @@ public class CarScript : MonoBehaviour {
         tmp = new Vector3[path.Count];
         this.trafficManager = trafficManager;
         path.CopyTo(tmp);
-        for (int i = 0; i < tmp.Length; i++)
-            Debug.Log("PATH for i=" + i + ":" + tmp[i]);
+        /*for (int i = 0; i < tmp.Length; i++)
+            Debug.Log("PATH for i=" + i + ":" + tmp[i]);*/
         
         return this.gameObject;
     }
