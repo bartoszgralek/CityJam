@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CarScript : MonoBehaviour {
 
-    public float speed = 20;
+    public float speed = 5;
 
     private TrafficManagerScript trafficManager;
     private List<Vector3> path = new List<Vector3>();
     public Vector3[] tmp;
     private int current = 0;
-    public bool keepGoing = true;
+    private bool keepGoing = true;
     private Vector3 target = new Vector3();
 
     public GameObject SetUp(List<Vector3> path, TrafficManagerScript trafficManager)
@@ -56,7 +56,6 @@ public class CarScript : MonoBehaviour {
             {
                 keepGoing = false;
             }
-                
         }
 
         // check if we have somewere to walk
