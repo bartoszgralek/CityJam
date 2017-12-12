@@ -39,14 +39,17 @@ public class TrafficManagerScript : MonoBehaviour {
 
     public void carFinished()
     {
-        int startId = UnityEngine.Random.Range(0, verticesPositions.Count);
-        int endId = UnityEngine.Random.Range(0, verticesPositions.Count);
-        while (startId.Equals(endId))
-        {
-            endId = UnityEngine.Random.Range(0, verticesPositions.Count);
-        }
+		List<int> path;
+		int startId;
+		int endId;
+		do {
+			startId = UnityEngine.Random.Range(0, verticesPositions.Count);
+			do {
+			endId = UnityEngine.Random.Range(0, verticesPositions.Count);
+			} while (startId.Equals(endId));
 
-        List<int> path = g.shortest_path(startId, endId);
+			path = g.shortest_path (startId, endId);
+		} while (path.Count < 2);
 
         if (path == null)
         {
@@ -62,7 +65,7 @@ public class TrafficManagerScript : MonoBehaviour {
 
         List<Vector3> pathForCar = new List<Vector3>();
 		Vector3[] help;
-		pathForCar.Add(verticesPositions[path[0]]);
+		//pathForCar.Add(verticesPositions[path[0]]);
         for (int i = 1; i < path.Count-1; i++)
         {
             //pathForCar.Add(verticesPositions[path[i]]);
