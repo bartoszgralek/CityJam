@@ -95,14 +95,67 @@ public class DrawManagerScript : MonoBehaviour {
                         if (!hit.collider.gameObject.transform.position.Equals(start.transform.position))
                         {
                             end = hit.collider.gameObject;
+							Vector3 v1, v2, v3, v4, k;
+							float a, b, c, d, kx, ky;
+							bool isInside = false;
+							for (int i = 0; i < graph.GetLength (0); i++) {
+								for (int j = 0; j < i; j++) {
+									Debug.Log (j + "---" + i);
+									if (graph[i, j] != 0) {
+										v1 = start.transform.position;
+										v2 = verticesPositions [i];
+										v3 = end.transform.position;
+										v4 = verticesPositions [j];
 
-                            GameObject instance = (Instantiate(line) as GameObject).GetComponent<LineScript>().setPoints(start.transform.position, end.transform.position);
-                            int id1 = start.GetComponent<VertexScript>().getId();
-                            int id2 = end.GetComponent<VertexScript>().getId();
-                            graph[id1, id2] = Vector3.Distance(start.transform.position * multiplier, end.transform.position * multiplier);
-                            graph[id2, id1] = graph[id1, id2];
+										if (v1 == v2 || v1 == v4 || v3 == v2 || v3 == v4) {
+											Debug.Log ("wspólne wierzchołki");
+											continue;
+										}
 
-                        
+										Debug.Log (v1 + " " + v2 + " " + v3 + " " + v4);
+										a = (v1.y - v3.y) / (v1.x - v3.x);
+										b = v1.y - a * v1.x;
+										c = (v2.y - v4.y) / (v2.x - v4.x);
+										d = v2.y - c * v2.x;
+										Debug.Log (a + " " + b + " " + c + " " + d);
+
+
+										if (c != a) {
+											kx = (b - d) / (c - a);
+											ky = a * kx + b;
+											Debug.Log (kx + " " + ky);
+												k.x = kx;
+												k.y = ky;
+												k.z = 0;
+											//GameObject instance = Instantiate(vertex, k, Quaternion.identity);
+										} else {
+											Debug.Log ("równoległe");
+											continue;
+										}
+
+										isInside = false;
+										isInside = checkIfInside (v1, v2, k, isInside);
+										isInside = checkIfInside (v2, v3, k, isInside);
+										isInside = checkIfInside (v3, v4, k, isInside);
+										isInside = checkIfInside (v4, v1, k, isInside);
+
+										if (isInside) {
+											Debug.Log ("jest zły");
+											goto waypoint;
+										}
+									}
+								}
+							}
+							waypoint:
+
+							if (!isInside) {
+								GameObject instance = (Instantiate(line) as GameObject).GetComponent<LineScript>().setPoints(start.transform.position, end.transform.position);
+								int id1 = start.GetComponent<VertexScript>().getId();
+								int id2 = end.GetComponent<VertexScript>().getId();
+								graph[id1, id2] = Vector3.Distance(start.transform.position * multiplier, end.transform.position * multiplier);
+								graph[id2, id1] = graph[id1, id2];
+							}
+                           
 
                             m.color = Color.black;
                             state = 0;
@@ -136,4 +189,12 @@ public class DrawManagerScript : MonoBehaviour {
         }
         return false;
     }
+
+	bool checkIfInside(Vector3 i, Vector3 j, Vector3 k, bool isInside) {
+		if (((i.y > k.y) != (j.y > k.y)) && (k.x < (j.x - i.x) * (k.y - i.y) / (j.y - i.y) + i.x))
+			return !isInside;
+		return isInside;
+	}
 }
+
+
