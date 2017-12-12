@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Crossing{
+public class Crossing : MonoBehaviour{
 
     private int id;
     private Vector3 middlePoint;
     private List<VertexVariation> outs;
+    private int idGreen;
 
     public Crossing(int id, Vector3 middlePoint)
     {
@@ -69,5 +70,21 @@ public class Crossing{
         }
 
         return BezierCurve.getBezierPoints(from, middlePoint, to);
+    }
+
+    private void Start()
+    {
+        idGreen = outs[0].getId();
+       
+    }
+
+    private void Update()
+    {
+        turnLights();
+    }
+
+    void turnLights()
+    {
+        
     }
 }

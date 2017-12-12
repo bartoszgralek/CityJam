@@ -11,6 +11,8 @@ public class CarScript : MonoBehaviour {
     public Vector3[] tmp;
     private int current = 0;
     private bool keepGoing = true;
+    private bool startCounting = false;
+    private float timeElapsed = 0f;
     private Vector3 target = new Vector3();
 
     public GameObject SetUp(List<Vector3> path, TrafficManagerScript trafficManager)
@@ -46,15 +48,27 @@ public class CarScript : MonoBehaviour {
         Vector3 forward = transform.TransformDirection(Vector3.forward) * 4;
         
         
-        Debug.DrawRay(transform.position+ transform.TransformDirection(Vector3.forward) + new Vector3(0, 0.5f, 0), forward, Color.green);
+        //Debug.DrawRay(transform.position+ transform.TransformDirection(Vector3.forward) + new Vector3(0, 0.5f, 0), forward, Color.green);
 
         if(Physics.Raycast(transform.position + transform.TransformDirection(Vector3.forward) + new Vector3(0, 0.5f, 0), (forward), out hit))
         {
             theDistance = hit.distance;
             Debug.Log("collider name: " + hit.collider.gameObject.name + " dist:" + theDistance);
-            if(hit.collider.gameObject.name.Equals("jeep") && theDistance<2f)
+            if(hit.collider.gameObject.name.Equals("jeep") && theDistance<0.5f)
             {
                 keepGoing = false;
+                timeElapsed += Time.deltaTime;
+                Debug.Log(timeElapsed);
+                if (timeElapsed > 5f)
+                {
+                    if (trafficManager != null)
+                        trafficManager.carFinished();
+                    Destroy(this.gameObject);
+                }
+                    
+            }else
+            {
+                timeElapsed = 0;
             }
         }
 
