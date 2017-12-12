@@ -42,14 +42,14 @@ public class TrafficManagerScript : MonoBehaviour {
 		List<int> path;
 		int startId;
 		int endId;
-		do {
+
 			startId = UnityEngine.Random.Range(0, verticesPositions.Count);
 			do {
 			endId = UnityEngine.Random.Range(0, verticesPositions.Count);
 			} while (startId.Equals(endId));
 
 			path = g.shortest_path (startId, endId);
-		} while (path.Count < 2);
+		
 
         if (path == null)
         {
@@ -70,7 +70,6 @@ public class TrafficManagerScript : MonoBehaviour {
         {
             //pathForCar.Add(verticesPositions[path[i]]);
 			help = MapManagerScript.getCrossingAtIndex(path[i]).getPathForCrossing(path[i-1], path[i+1]);
-			Debug.Log (help);
 			foreach (Vector3 v in help)
 			{
 				pathForCar.Add(v);
