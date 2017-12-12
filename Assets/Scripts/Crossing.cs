@@ -32,7 +32,10 @@ public class Crossing{
         {
             if(outs[i].getId() == index)
             {
-                output = (outs[i].getVectIn() + outs[i].getVectOut()) / 2;
+            
+				output.x = (outs [i].getVectIn ().x + outs [i].getVectOut ().x)/2;
+				output.y = 0;
+				output.z = (outs [i].getVectIn ().z + outs [i].getVectOut ().z)/2;
                 break;
             }
         }

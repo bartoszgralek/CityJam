@@ -130,6 +130,7 @@ public class MapManagerScript : MonoBehaviour {
                         start = crossings[j].getMiddlePointForRoad(i);
                         //Debug.Log(end);
 
+						Debug.Log ("///" + start + "///" + end);
                         r.points.Add(start);
                         r.points.Add(end);
 
