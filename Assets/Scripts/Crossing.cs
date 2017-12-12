@@ -30,13 +30,13 @@ public class Crossing{
         Vector3 output = new Vector3();
         for(int i=0;i<outs.Count;i++)
         {
-            if(outs[i].getId() == id)
+            if(outs[i].getId() == index)
             {
                 output = (outs[i].getVectIn() + outs[i].getVectOut()) / 2;
                 break;
             }
         }
-
+		Debug.Log (output);
         return output;
     }
 
