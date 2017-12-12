@@ -12,7 +12,7 @@ public class Crossing{
     {
         this.middlePoint = middlePoint;
         this.id = id;
-        this.outs = new List<VertexVariation>();
+		this.outs = new List<VertexVariation>();
     }
 
     public void addRoad(VertexVariation vertexVariation)

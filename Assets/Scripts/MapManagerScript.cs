@@ -11,8 +11,8 @@ public class MapManagerScript : MonoBehaviour {
     
     private List<Vector3> verticesPositions;
     private float[,] graph;
-    private List<Crossing> crossings;
-    private int multiplier = 10;
+    private static List<Crossing> crossings;
+    //private int multiplier = 10;
 
     private void Awake()
     {
@@ -56,8 +56,8 @@ public class MapManagerScript : MonoBehaviour {
                         //first point c(x,y)
                         float a1 = (to.z - from.z) / (to.x - from.x);
                         float b1 = from.z - a1 * from.x;
-                        float d1 = 5f;
-                        float d2 = 5f;
+                        float d1 = 4f;
+                        float d2 = 1f;
                         float x;
                         if((to.x - from.x)>0)
                         {
@@ -92,16 +92,15 @@ public class MapManagerScript : MonoBehaviour {
 
                         Instantiate(ball, vectIn, Quaternion.identity);
                         Instantiate(ball, vectOut, Quaternion.identity);
-                        
                         crossing.addRoad(new VertexVariation(j, vectIn, vectOut));
 
-                        crossings.Add(crossing);
                        
 
                         //r.Refresh();
                         //r.gameObject.AddComponent<BoxCollider>();
-                    }
-                }
+					}
+				}
+				crossings.Add(crossing);
             }
 
             for(int i=0;i<graph.GetLength(0);i++)
@@ -137,4 +136,10 @@ public class MapManagerScript : MonoBehaviour {
     {
 
     }
+
+	public static Crossing getCrossingAtIndex(int index)
+	{
+		return crossings[index];
+	}
+
 }

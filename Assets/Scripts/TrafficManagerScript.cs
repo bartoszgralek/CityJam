@@ -39,11 +39,11 @@ public class TrafficManagerScript : MonoBehaviour {
 
     public void carFinished()
     {
-        int startId = UnityEngine.Random.Range(0, verticesPositions.Count-1);
-        int endId = UnityEngine.Random.Range(0, verticesPositions.Count-1);
+        int startId = UnityEngine.Random.Range(0, verticesPositions.Count);
+        int endId = UnityEngine.Random.Range(0, verticesPositions.Count);
         while (startId.Equals(endId))
         {
-            endId = UnityEngine.Random.Range(0, verticesPositions.Count-1);
+            endId = UnityEngine.Random.Range(0, verticesPositions.Count);
         }
 
         List<int> path = g.shortest_path(startId, endId);
@@ -61,9 +61,18 @@ public class TrafficManagerScript : MonoBehaviour {
         }
 
         List<Vector3> pathForCar = new List<Vector3>();
-        for (int i = 0; i < path.Count; i++)
+		Vector3[] help;
+		pathForCar.Add(verticesPositions[path[0]]);
+        for (int i = 1; i < path.Count-1; i++)
         {
-            pathForCar.Add(verticesPositions[path[i]]);
+            //pathForCar.Add(verticesPositions[path[i]]);
+			help = MapManagerScript.getCrossingAtIndex(path[i]).getPathForCrossing(path[i-1], path[i+1]);
+			Debug.Log (help);
+			foreach (Vector3 v in help)
+			{
+				pathForCar.Add(v);
+			}
+			pathForCar.RemoveAt (pathForCar.Count - 1);
         }
 
         for (int j = 0; j < pathForCar.Count; j++)

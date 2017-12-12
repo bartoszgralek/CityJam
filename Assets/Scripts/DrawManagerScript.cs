@@ -100,7 +100,7 @@ public class DrawManagerScript : MonoBehaviour {
 							bool isInside = false;
 							for (int i = 0; i < graph.GetLength (0); i++) {
 								for (int j = 0; j < i; j++) {
-									Debug.Log (j + "---" + i);
+									//Debug.Log (j + "---" + i);
 									if (graph[i, j] != 0) {
 										v1 = start.transform.position;
 										v2 = verticesPositions [i];
@@ -108,28 +108,28 @@ public class DrawManagerScript : MonoBehaviour {
 										v4 = verticesPositions [j];
 
 										if (v1 == v2 || v1 == v4 || v3 == v2 || v3 == v4) {
-											Debug.Log ("wspólne wierzchołki");
+											//Debug.Log ("wspólne wierzchołki");
 											continue;
 										}
 
-										Debug.Log (v1 + " " + v2 + " " + v3 + " " + v4);
+										//Debug.Log (v1 + " " + v2 + " " + v3 + " " + v4);
 										a = (v1.y - v3.y) / (v1.x - v3.x);
 										b = v1.y - a * v1.x;
 										c = (v2.y - v4.y) / (v2.x - v4.x);
 										d = v2.y - c * v2.x;
-										Debug.Log (a + " " + b + " " + c + " " + d);
+										//Debug.Log (a + " " + b + " " + c + " " + d);
 
 
 										if (c != a) {
 											kx = (b - d) / (c - a);
 											ky = a * kx + b;
-											Debug.Log (kx + " " + ky);
+											//Debug.Log (kx + " " + ky);
 												k.x = kx;
 												k.y = ky;
 												k.z = 0;
 											//GameObject instance = Instantiate(vertex, k, Quaternion.identity);
 										} else {
-											Debug.Log ("równoległe");
+											//Debug.Log ("równoległe");
 											continue;
 										}
 
@@ -140,7 +140,7 @@ public class DrawManagerScript : MonoBehaviour {
 										isInside = checkIfInside (v4, v1, k, isInside);
 
 										if (isInside) {
-											Debug.Log ("jest zły");
+											//Debug.Log ("jest zły");
 											goto waypoint;
 										}
 									}
