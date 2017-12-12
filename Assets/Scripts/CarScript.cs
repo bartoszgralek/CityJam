@@ -7,9 +7,10 @@ public class CarScript : MonoBehaviour {
     public float speed = 20;
 
     private TrafficManagerScript trafficManager;
-    private List<Vector3> path;
-    private Vector3[] tmp;
+    private List<Vector3> path = new List<Vector3>();
+    public Vector3[] tmp;
     private int current = 0;
+    public bool keepGoing = true;
     private Vector3 target = new Vector3();
 
     public GameObject SetUp(List<Vector3> path, TrafficManagerScript trafficManager)
@@ -26,8 +27,10 @@ public class CarScript : MonoBehaviour {
 
     private void Awake()
     {
-        
+
     }
+
+
 
     // Use this for initialization
     void Start () {
@@ -37,15 +40,39 @@ public class CarScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-       // check if we have somewere to walk
-        if (current < tmp.Length)
+        keepGoing = true;
+        RaycastHit hit;
+        float theDistance;
+        Vector3 forward = transform.TransformDirection(Vector3.forward) * 4;
+        
+        
+        Debug.DrawRay(transform.position+ transform.TransformDirection(Vector3.forward) + new Vector3(0, 0.5f, 0), forward, Color.green);
+
+        if(Physics.Raycast(transform.position + transform.TransformDirection(Vector3.forward) + new Vector3(0, 0.5f, 0), (forward), out hit))
         {
-            target = tmp[current];
-            walk();
-        }else if(current == tmp.Length)
+            theDistance = hit.distance;
+            Debug.Log("collider name: " + hit.collider.gameObject.name + " dist:" + theDistance);
+            if(hit.collider.gameObject.name.Equals("jeep"))
+            {
+                keepGoing = false;
+            }
+                
+        }
+
+        // check if we have somewere to walk
+        if (tmp.Length > 0)
         {
-			trafficManager.carFinished();
-            Destroy(this.gameObject);
+            if (current < tmp.Length && keepGoing)
+            {
+                target = tmp[current];
+                walk();
+            }
+            else if (current == tmp.Length)
+            {
+                if (trafficManager != null)
+                    trafficManager.carFinished();
+                Destroy(this.gameObject);
+            }
         }
         
     }
